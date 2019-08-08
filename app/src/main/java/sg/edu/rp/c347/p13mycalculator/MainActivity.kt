@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
 
         if (!clickedOperator) {
-//            tvResult.text = ""
+
 
             when (btnSelected.id) {
 
@@ -45,9 +45,9 @@ class MainActivity : AppCompatActivity() {
                 button9.id -> input1 = input1 + "9"
 
             }
-
+            tvResult.text = input1
         } else {
-//            tvResult.text = ""
+           
 
             when (btnSelected.id) {
                 button0.id -> input2 = input2 + "0"
@@ -61,9 +61,9 @@ class MainActivity : AppCompatActivity() {
                 button8.id -> input2 = input2 + "8"
                 button9.id -> input2 = input2 + "9"
             }
-
+            tvResult.text = input1 + "\n" + operator + "\n" + input2
         }
-        tvResult.text = output.toString()
+
     }
         fun btnOperatorClick(view: View) {
 
@@ -80,23 +80,26 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-        /*    if(operator.equals("+") && input2.isNotEmpty()) {
-                output += input2.toDouble()
-            }*/
+            if(operator.equals("+") && output != null) {
 
-            tvResult.text =output.toString()
+                tvResult.text =output.toString() + "\n" + operator + "\n" + input2
+
+            }
+
+            tvResult.text =input1 + "\n" + operator + "\n" + input2
+
         }
 
 
         fun btnOnClickAC(view: View) {
 
             clickedOperator = false
-            val btnSelected = view as Button
+        /*    val btnSelected = view as Button
             when (btnSelected.id) {
 
                 buttonAC.id -> output = 0.0
 
-            }
+            }*/
             tvResult.text = ""
             operator = ""
             output = 0.0
@@ -109,15 +112,22 @@ class MainActivity : AppCompatActivity() {
         fun btnEqualClick(view: View) {
 
 
-       /*     val btnSelected = view as Button
+      /*      val btnSelected = view as Button
             when (btnSelected.id) {
 
-                buttonEqual.id -> output = ""
+                    buttonEqual.id -> output = input1.toDouble()+input2.toDouble()
+            }
+*/
 
-            }*/
 
-            if(operator.equals("+") && input2.isEmpty()) {
-                output = tvResult.text.toString().toDouble() + input2.toDouble()
+            if(operator.equals("+")) {
+                output = input1.toDouble() + input2.toDouble()
+            } else if (operator.equals("/")) {
+                output = input1.toDouble() / input2.toDouble()
+            } else if (operator.equals("*")) {
+                output = input1.toDouble() * input2.toDouble()
+            } else if (operator.equals("-")) {
+                output = input1.toDouble() - input2.toDouble()
             }
 
             tvResult.text = output.toString()
